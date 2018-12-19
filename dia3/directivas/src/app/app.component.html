@@ -1,0 +1,35 @@
+<h1>Personas</h1>
+
+<div *ngIf="personas != null; else cargandoPersona">
+
+  <div *ngFor="let persona of personas">
+      <span appResaltarTexto>Nombres: {{ persona.nombres }}</span> <br>
+      <span appResaltarTexto="blue">Apellidos: {{ persona.apellidos }}</span> <br>
+    
+      <ng-container [ngSwitch]="persona.tipo">
+        <span [ngStyle]="ESTILOS_CLIENTE" *ngSwitchCase="'CLIENTE'">
+          Es un cliente
+        </span>
+        <span [ngStyle]="{'color': COLOR_PROVEEDOR}" *ngSwitchCase="'PROVEEDOR'">
+          Es un proveedor
+        </span>
+        <span [ngStyle]="{'color': COLOR_DESCONOCIDO}" *ngSwitchDefault>
+          Tipo de persona desconocida
+        </span>
+      </ng-container>
+
+      <hr>
+  </div>
+
+  <p [ngClass]="{'mensaje-error': mensajeLeido == false, 'mensaje-leido': mensajeLeido == true}">
+    Esto es un mensaje de error
+  </p>
+  <button (click)="cambiarEstadoMensaje()">
+    Cambiar estado mensaje
+  </button>
+
+</div>
+
+<ng-template #cargandoPersona>
+  <span>Cargando...</span>
+</ng-template>

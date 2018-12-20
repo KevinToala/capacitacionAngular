@@ -1,0 +1,51 @@
+<h2>Demostración de pipes</h2>
+
+<p>Currency Pipe</p>
+<span>Valor A: {{ valorA }}</span> <br>
+<span>Valor A: {{ valorA | currency }}</span> <br>
+<span>Valor A: {{ valorA | currency:'EUR' }}</span> <br>
+<span>Valor B: {{ valorB | currency:'EUR':'code' }}</span> <br>
+<span>Valor B: {{ valorB | currency:'EUR':'symbol' }}</span> <br>
+<span>Valor B: {{ valorB | currency:'EUR':'symbol':'4.2-3'}}</span>
+
+<p>Date Pipe</p>
+<span>Fecha Hoy: {{ fechaHoy }}</span> <br>
+<span>Fecha Hoy: {{ fechaHoy | date:'fullDate' }}</span> <br>
+<span>Fecha Hoy: {{ fechaHoy | date:'h:mm a z' }}</span> <br>
+
+<p>Decimal Pipe</p>
+<span>PI: {{ pi | number }}</span> <br>
+<span>PI: {{ pi | number:'3.1-5' }}</span> <br>
+<span>PI: {{ pi | number:'4.5-5' }}</span> <br>
+
+<p>Json Pipe</p>
+<pre>Persona: {{ persona | json }}</pre> <br>
+
+<p>LowerCase & UpperCase Pipe</p>
+<div>
+  <label>Nombre: </label><input [(ngModel)]="valorInput" type="text"> <br>
+  <span>Con lowercase: {{valorInput | lowercase}}</span> <br>
+  <span>Con uppercase: {{valorInput | uppercase}}</span>
+</div>
+
+<p>TitleCase Pipe</p>
+<span>{{ 'eSta es unA cADEna de texto sin CapitaliZAR' }}</span> <br>
+<span>{{ 'eSta es unA cADEna de texto capITALIzada' | titlecase }}</span>
+
+<p>Slice Pipe</p>
+<span>{{ listaLetras }}</span> <br>
+<span>{{ listaLetras | slice:1:3 }}</span> <br><br>
+
+<span>{{ cadenaTexto }}</span><br>
+<span>{{ cadenaTexto | slice:0:4 }}</span><br>
+<span>{{ cadenaTexto | slice:-4 }}</span><br>
+<span>{{ cadenaTexto | slice:-4:-2 }}</span>
+
+<p>Pipe Personalizado</p>
+<span>{{ persona }}</span> <br>
+<span>{{ persona | nombrePersona }}</span> <br>
+<span>{{ persona | nombrePersona:true }}</span> <br> <br>
+
+<span>{{ persona | nombrePersonaImpuro:true }}</span> <br> <br>
+
+<button (click)="actualizarPersona()">Actualizar Persona</button>

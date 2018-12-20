@@ -1,0 +1,9 @@
+<div class="padding-panel">
+  <h3>Panel Contador</h3>
+
+  <button mat-stroked-button color="primary" (click)="incrementarContador()">+ Incrementar</button>
+  <button mat-stroked-button color="accent" (click)="decrementarContador()">- Decrementar</button>
+  <button mat-stroked-button color="warn" (click)="reiniciar()">Reiniciar</button>
+</div>
+
+<app-contador [valorInicial]="10" (eventoReiniciar)="contadorReiniciado()"></app-contador>

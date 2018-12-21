@@ -1,0 +1,32 @@
+<h2>Facturas</h2>
+
+<ng-container *ngIf="facturas; else mensajeCargando">
+  <div *ngFor="let factura of facturas; index as i ; even as esPar; odd as esImpar" [ngClass]="{'fondo-par': esPar, 'fondo-impar': esImpar}">
+    <h3>{{ i }}</h3>
+    <span>Numero Factura: {{ factura.numeroFactura }}</span> <br>
+    <span>Cliente: {{ factura.cliente }}</span> <br>
+
+    <div [ngClass]="{'estado-anulado': factura.anulado}" [ngSwitch]="factura.anulado">
+      <span *ngSwitchCase="true">
+        Factura Anulada
+      </span>
+      <span *ngSwitchDefault>
+        Factura Creada
+      </span>
+    </div>
+
+    <br>
+    <span style="font-size: 18px">Articulos</span>
+
+    <ul *ngFor="let item of factura.items">
+      <li>
+        {{item.producto}}; Cantidad: {{ item.cantidad }}; Precio Unitario: {{ item.precioUnitario }}; TOTAL: {{ item.cantidad * item.precioUnitario }}
+      </li>
+    </ul>
+    <hr>
+  </div>
+</ng-container>
+
+<ng-template #mensajeCargando>
+  <span>Cargando el listado de facturas. Por favor espere...</span>
+</ng-template>

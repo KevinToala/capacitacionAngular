@@ -1,0 +1,17 @@
+<h2>Personas</h2>
+
+<span>Vista Previa: {{nombres}} {{apellidos}}</span> <br>
+
+<input type="text" placeholder="Nombres" [(ngModel)]="nombres">
+<input type="text" placeholder="Apellidos" [(ngModel)]="apellidos">
+
+<br>
+<button (click)="guardarPersona()">Guardar</button>
+<br>
+
+<div *ngFor="let persona of personas">
+  <span>Nombres: {{ persona.nombres }}</span> <br>
+  <span>Apellidos: {{ persona.apellidos }}</span> <br>
+
+  <hr>
+</div>

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@CrossOrigin
 @RestController
 public class PaisControlador {
 	@Autowired
@@ -31,6 +32,22 @@ public class PaisControlador {
 			@RequestBody Pais pais
 	){
 		return paisRepositorio.save(pais);
+	}
+	
+	@PutMapping("/paises/{id}")
+	public Pais actualizar(
+			@PathVariable Long id,
+			@RequestBody Pais pais
+	){
+		Pais paisActual = paisRepositorio.findById(id)
+				.orElseThrow(() -> new RuntimeException("No existe pais"));
+		
+		paisActual.setNombre(pais.getNombre());
+		paisActual.setCodigoISO(pais.getCodigoISO());
+		
+		paisRepositorio.save(paisActual);
+		
+		return pais;
 	}
 	
 	@DeleteMapping("/paises/{id}")

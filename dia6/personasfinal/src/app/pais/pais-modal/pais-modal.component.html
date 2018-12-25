@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Pais</h1>
+<div mat-dialog-content>
+  <form fxLayout="column" [formGroup]="formulario">
+      <mat-form-field fxFlex>
+        <input matInput placeholder="Nombre" formControlName="nombre" required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex>
+        <input matInput placeholder="Codigo ISO" formControlName="codigoISO" required>
+      </mat-form-field>      
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [disabled]="formulario.invalid"
+          (click)="guardar()" color="primary">Guardar</button>
+  <button mat-button mat-dialog-close color="warn">Cancelar</button>
+</div>

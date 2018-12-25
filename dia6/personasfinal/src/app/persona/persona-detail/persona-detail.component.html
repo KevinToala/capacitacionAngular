@@ -1,0 +1,89 @@
+<div class="contenido">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h2>Persona</h2>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <button mat-raised-button color="accent"
+              routerLink="/personas">
+        <mat-icon>arrow_back</mat-icon> 
+        Regresar
+      </button>
+      
+      <button *ngIf="esModoCreacion()" mat-raised-button color="primary"
+              [disabled]="formulario.invalid"
+              (click)="guardar()">
+          <mat-icon>save</mat-icon> 
+          Guardar
+      </button>
+      
+      <button *ngIf="persona != null && esModoLectura()"
+              mat-raised-button color="primary"
+              [routerLink]="['/personas/edicion', persona.id]">
+          Editar
+      </button>
+      
+      <button *ngIf="esModoEdicion()" mat-raised-button color="primary"
+              [disabled]="formulario.invalid"
+              (click)="actualizar()">
+          <mat-icon>save</mat-icon> 
+          Actualizar
+      </button>
+    </div>
+  </div>
+
+  <mat-card>
+    <form [formGroup]="formulario">
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Nombres" formControlName="nombres"
+                 [readonly]="esModoLectura()">
+          <mat-error *ngIf="formulario.get('nombres').invalid">
+            {{getErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Apellidos" formControlName="apellidos"
+                 [readonly]="esModoLectura()">
+        </mat-form-field>
+      </div>
+      
+      <div fxLayout="row" fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Identificación" formControlName="identificacion"
+                   [readonly]="esModoLectura()">
+          </mat-form-field>
+          
+          <mat-form-field fxFlex>
+              <mat-select placeholder="Genero" formControlName="genero">
+                <mat-option value="MASCULINO"> Masculino </mat-option>
+                <mat-option value="FEMENINO"> Femenino </mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div>
+      
+      <div fxLayout="row" fxLayoutGap="10px">
+          <mat-form-field  fxFlex>
+              <input matInput [matDatepicker]="picker"
+                     formControlName="fecha" placeholder="Fecha de Nacimiento">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Telefono" formControlName="telefono"
+                   [readonly]="esModoLectura()">
+          </mat-form-field>  
+      </div>
+      
+      <div fxLayout="row" fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Correo" formControlName="correo"
+                   [readonly]="esModoLectura()">
+          </mat-form-field>  
+      </div>
+
+    </form>
+  </mat-card>
+
+</div>

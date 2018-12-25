@@ -34,6 +34,28 @@ public class PersonaControlador {
 		return personaRepositorio.save(persona);
 	}
 	
+	@PutMapping("/personas/{id}")
+	public Persona actualizar(
+			@PathVariable Long id,
+			@RequestBody Persona personaActualizar
+	){
+		Persona persona = personaRepositorio.findById(id)
+				.orElseThrow(() -> new RuntimeException("No se encontro persona con " + id));
+		
+		
+		persona.setNombres(personaActualizar.getNombres());
+		persona.setApellidos(personaActualizar.getApellidos());
+		persona.setIdentificacion(personaActualizar.getIdentificacion());
+		persona.setGenero(personaActualizar.getGenero());
+		persona.setFecha(personaActualizar.getFecha());
+		persona.setCorreo(personaActualizar.getCorreo());
+		persona.setTelefono(personaActualizar.getTelefono());
+		
+		personaRepositorio.save(persona);
+		
+		return persona;
+	}
+	
 	@DeleteMapping("/personas/{id}")
 	public void eliminar(@PathVariable Long id){
 		personaRepositorio.deleteById(id);
